@@ -1,6 +1,9 @@
 class Restaurant < ApplicationRecord
   # Direct associations
 
+  belongs_to :neighborhood,
+             :counter_cache => true
+
   has_many   :tags,
              :dependent => :nullify
 
