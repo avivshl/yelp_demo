@@ -60,7 +60,7 @@
           Review parent
         </label>
 
-        <input type="text" id="review_parent_id" name="review_parent_id" placeholder="Review parent" class="form-control" value="<%= @review.review_parent_id %>">
+        <%= select_tag(:review_parent_id, options_from_collection_for_select(Review.all, :id, :user_id, @review.review_parent_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-success">
