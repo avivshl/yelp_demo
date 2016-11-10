@@ -5,11 +5,17 @@
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>City</dt>
-      <dd><%= @restaurant.city %></dd>
-
       <dt>Name</dt>
       <dd><%= @restaurant.name %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @restaurant.description %></dd>
+
+      <dt>Address</dt>
+      <dd><%= @restaurant.address %></dd>
+
+      <dt>No views</dt>
+      <dd><%= @restaurant.no_views %></dd>
 
       <dt>Neighborhood</dt>
       <dd>
@@ -23,20 +29,8 @@
       <dt>Average rating</dt>
       <dd><%= @restaurant.average_rating %></dd>
 
-      <dt>No views</dt>
-      <dd><%= @restaurant.no_views %></dd>
-
-      <dt>Description</dt>
-      <dd><%= @restaurant.description %></dd>
-
-      <dt>Address</dt>
-      <dd><%= @restaurant.address %></dd>
-
       <dt>Website</dt>
       <dd><%= @restaurant.website %></dd>
-
-      <dt>Cover photo link</dt>
-      <dd><%= @restaurant.cover_photo_link %></dd>
 
     </dl>
 
@@ -117,7 +111,7 @@
           Review parent
         </label>
 
-        <%= select_tag(:review_parent_id, options_from_collection_for_select(Review.all, :id, :user_id), :class => "form-control") %>
+        <input type="text" id="review_parent_id" name="review_parent_id" placeholder="Review parent" class="form-control" value="">
       </div>
 
       <button class="btn btn-block btn-success">
@@ -129,28 +123,28 @@
   </div>
 </div>
 
-<!-- A Restaurant has many tags -->
+<!-- A Restaurant has many restarant_tags -->
 
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Tags
+        Restarant_tags
       </li>
 
-      <% @restaurant.tags.each do |tag| %>
+      <% @restaurant.restarant_tags.each do |restarant_tag| %>
         <li class="list-group-item">
-          <a href="/tags/<%= tag.id %>">
-            <%= tag.restaurant_id %>
+          <a href="/restarant_tags/<%= restarant_tag.id %>">
+            <%= restarant_tag.restaurant_id %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/tags/<%= tag.id %>" class="btn btn-primary">
+            <a href="/restarant_tags/<%= restarant_tag.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/tags/<%= tag.id %>/edit" class="btn btn-warning">
+            <a href="/restarant_tags/<%= restarant_tag.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_tag/<%= tag.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_restarant_tag/<%= restarant_tag.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>
@@ -158,27 +152,58 @@
       <% end %>
 
       <li class="list-group-item">
-        <form action="/create_tag" method="post">
+        <form action="/create_restarant_tag" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for restaurant_id -->
       <input type="hidden" name="restaurant_id" value="<%= @restaurant.id %>">
 
-      <!-- Label and input for name -->
+      <!-- Label and input for tag_id -->
       <div class="form-group">
-        <label for="name" class="control-label">
-          Name
+        <label for="tag_id" class="control-label">
+          Tag
         </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
+        <%= select_tag(:tag_id, options_from_collection_for_select(Tag.all, :id, :created_at), :class => "form-control") %>
       </div>
 
       <button class="btn btn-block btn-success">
-        Create Tag
+        Create Restarant Tag
       </button>
     </form>
       </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Restaurant has many reviewers -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Reviewers
+      </li>
+
+      <% @restaurant.reviewers.each do |user| %>
+        <li class="list-group-item">
+          <a href="/users/<%= user.id %>">
+            <%= user.email %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/users/<%= user.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
@@ -205,6 +230,37 @@
               <i class="fa fa-edit"></i>
             </a>
             <a href="/delete_city/<%= city.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Restaurant has many tags -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tags
+      </li>
+
+      <% @restaurant.tags.each do |tag| %>
+        <li class="list-group-item">
+          <a href="/tags/<%= tag.id %>">
+            <%= tag.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tags/<%= tag.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tags/<%= tag.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_tag/<%= tag.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>

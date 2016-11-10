@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @tag = Tag.new
+    @restarant_tag = RestarantTag.new
     @review = Review.new
     @restaurant = Restaurant.find(params[:id])
 
@@ -22,15 +22,13 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new
 
-    @restaurant.city = params[:city]
     @restaurant.name = params[:name]
-    @restaurant.neighborhood = params[:neighborhood]
-    @restaurant.average_rating = params[:average_rating]
-    @restaurant.no_views = params[:no_views]
     @restaurant.description = params[:description]
     @restaurant.address = params[:address]
+    @restaurant.no_views = params[:no_views]
+    @restaurant.neighborhood = params[:neighborhood]
+    @restaurant.average_rating = params[:average_rating]
     @restaurant.website = params[:website]
-    @restaurant.cover_photo_link = params[:cover_photo_link]
 
     save_status = @restaurant.save
 
@@ -50,15 +48,13 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
 
-    @restaurant.city = params[:city]
     @restaurant.name = params[:name]
-    @restaurant.neighborhood = params[:neighborhood]
-    @restaurant.average_rating = params[:average_rating]
-    @restaurant.no_views = params[:no_views]
     @restaurant.description = params[:description]
     @restaurant.address = params[:address]
+    @restaurant.no_views = params[:no_views]
+    @restaurant.neighborhood = params[:neighborhood]
+    @restaurant.average_rating = params[:average_rating]
     @restaurant.website = params[:website]
-    @restaurant.cover_photo_link = params[:cover_photo_link]
 
     save_status = @restaurant.save
 

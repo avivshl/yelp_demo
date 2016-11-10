@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Restarant Tag #<%= @restarant_tag.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Restaurant</dt>
+      <dd>
+        <% if @restarant_tag.restaurant.present? %>
+          <a href="/restaurants/<%= @restarant_tag.restaurant_id %>">
+            <%= @restarant_tag.restaurant.created_at %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Tag</dt>
+      <dd>
+        <% if @restarant_tag.tag.present? %>
+          <a href="/tags/<%= @restarant_tag.tag_id %>">
+            <%= @restarant_tag.tag.created_at %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/restarant_tags" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/restarant_tags/<%= @restarant_tag.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_restarant_tag/<%= @restarant_tag.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

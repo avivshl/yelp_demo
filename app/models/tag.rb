@@ -1,9 +1,14 @@
 class Tag < ApplicationRecord
   # Direct associations
 
-  belongs_to :restaurant
+  has_many   :restarant_tags,
+             :dependent => :nullify
 
   # Indirect associations
+
+  has_many   :restaurants,
+             :through => :restarant_tags,
+             :source => :restaurant
 
   # Validations
 

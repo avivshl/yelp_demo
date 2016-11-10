@@ -29,19 +29,13 @@
         <td>
           <% if review.restaurant.present? %>
             <a href="/restaurants/<%= review.restaurant.id %>">
-              <%= review.restaurant.city %>
+              <%= review.restaurant.created_at %>
             </a>
           <% end %>
         </td>
         <td><%= review.stars %></td>
         <td><%= review.content %></td>
-        <td>
-          <% if review.review_parent.present? %>
-            <a href="/reviews/<%= review.review_parent.id %>">
-              <%= review.review_parent.user_id %>
-            </a>
-          <% end %>
-        </td>
+        <td><%= review.review_parent_id %></td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
           

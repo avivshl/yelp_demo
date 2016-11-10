@@ -18,7 +18,7 @@
       <dd>
         <% if @review.restaurant.present? %>
           <a href="/restaurants/<%= @review.restaurant_id %>">
-            <%= @review.restaurant.city %>
+            <%= @review.restaurant.created_at %>
           </a>
         <% end %>
       </dd>
@@ -30,13 +30,7 @@
       <dd><%= @review.content %></dd>
 
       <dt>Review parent</dt>
-      <dd>
-        <% if @review.review_parent.present? %>
-          <a href="/reviews/<%= @review.review_parent_id %>">
-            <%= @review.review_parent.user_id %>
-          </a>
-        <% end %>
-      </dd>
+      <dd><%= @review.review_parent_id %></dd>
 
     </dl>
 
@@ -103,87 +97,6 @@
 
       <button class="btn btn-block btn-success">
         Create Review Photo
-      </button>
-    </form>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<!-- A Review has many sub_reviews -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Sub_reviews
-      </li>
-
-      <% @review.sub_reviews.each do |review| %>
-        <li class="list-group-item">
-          <a href="/reviews/<%= review.id %>">
-            <%= review.user_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/reviews/<%= review.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_review/<%= review.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_review" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
-      <!-- Label and input for restaurant_id -->
-      <div class="form-group">
-        <label for="restaurant_id" class="control-label">
-          Restaurant
-        </label>
-
-        <%= select_tag(:restaurant_id, options_from_collection_for_select(Restaurant.all, :id, :city), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for stars -->
-      <div class="form-group">
-        <label for="stars" class="control-label">
-          Stars
-        </label>
-
-        <input type="text" id="stars" name="stars" placeholder="Stars" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for content -->
-      <div class="form-group">
-        <label for="content" class="control-label">
-          Content
-        </label>
-
-        <input type="text" id="content" name="content" placeholder="Content" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for review_parent_id -->
-      <div class="form-group">
-        <label for="review_parent_id" class="control-label">
-          Review parent
-        </label>
-
-        <%= select_tag(:review_parent_id, options_from_collection_for_select(Review.all, :id, :user_id), :class => "form-control") %>
-      </div>
-
-      <button class="btn btn-block btn-success">
-        Create Review
       </button>
     </form>
       </li>

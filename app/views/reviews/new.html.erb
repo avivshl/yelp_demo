@@ -27,7 +27,7 @@
           Restaurant
         </label>
 
-        <%= select_tag(:restaurant_id, options_from_collection_for_select(Restaurant.all, :id, :city, @review.restaurant_id), :class => "form-control") %>
+        <%= select_tag(:restaurant_id, options_from_collection_for_select(Restaurant.all, :id, :created_at, @review.restaurant_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for stars -->
@@ -54,7 +54,7 @@
           Review parent
         </label>
 
-        <%= select_tag(:review_parent_id, options_from_collection_for_select(Review.all, :id, :user_id, @review.review_parent_id), :class => "form-control") %>
+        <input type="text" id="review_parent_id" name="review_parent_id" placeholder="Review parent" class="form-control" value="<%= @review.review_parent_id %>">
       </div>
 
       <button class="btn btn-success">

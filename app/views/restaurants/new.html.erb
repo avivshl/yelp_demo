@@ -18,15 +18,6 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for city -->
-      <div class="form-group">
-        <label for="city" class="control-label">
-          City
-        </label>
-
-        <input type="text" id="city" name="city" placeholder="City" class="form-control" value="<%= @restaurant.city %>">
-      </div>
-
       <!-- Label and input for name -->
       <div class="form-group">
         <label for="name" class="control-label">
@@ -34,33 +25,6 @@
         </label>
 
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @restaurant.name %>">
-      </div>
-
-      <!-- Label and input for neighborhood -->
-      <div class="form-group">
-        <label for="neighborhood" class="control-label">
-          Neighborhood
-        </label>
-
-        <%= select_tag(:neighborhood, options_from_collection_for_select(Neighborhood.all, :id, :city, @restaurant.neighborhood), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for average_rating -->
-      <div class="form-group">
-        <label for="average_rating" class="control-label">
-          Average rating
-        </label>
-
-        <input type="text" id="average_rating" name="average_rating" placeholder="Average rating" class="form-control" value="<%= @restaurant.average_rating %>">
-      </div>
-
-      <!-- Label and input for no_views -->
-      <div class="form-group">
-        <label for="no_views" class="control-label">
-          No views
-        </label>
-
-        <input type="text" id="no_views" name="no_views" placeholder="No views" class="form-control" value="<%= @restaurant.no_views %>">
       </div>
 
       <!-- Label and input for description -->
@@ -81,6 +45,33 @@
         <textarea id="address" name="address" placeholder="Address" class="form-control" rows="3"><%= @restaurant.address %></textarea>
       </div>
 
+      <!-- Label and input for no_views -->
+      <div class="form-group">
+        <label for="no_views" class="control-label">
+          No views
+        </label>
+
+        <input type="text" id="no_views" name="no_views" placeholder="No views" class="form-control" value="<%= @restaurant.no_views %>">
+      </div>
+
+      <!-- Label and input for neighborhood -->
+      <div class="form-group">
+        <label for="neighborhood" class="control-label">
+          Neighborhood
+        </label>
+
+        <%= select_tag(:neighborhood, options_from_collection_for_select(Neighborhood.all, :id, :city, @restaurant.neighborhood), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for average_rating -->
+      <div class="form-group">
+        <label for="average_rating" class="control-label">
+          Average rating
+        </label>
+
+        <input type="text" id="average_rating" name="average_rating" placeholder="Average rating" class="form-control" value="<%= @restaurant.average_rating %>">
+      </div>
+
       <!-- Label and input for website -->
       <div class="form-group">
         <label for="website" class="control-label">
@@ -88,15 +79,6 @@
         </label>
 
         <input type="text" id="website" name="website" placeholder="Website" class="form-control" value="<%= @restaurant.website %>">
-      </div>
-
-      <!-- Label and input for cover_photo_link -->
-      <div class="form-group">
-        <label for="cover_photo_link" class="control-label">
-          Cover photo link
-        </label>
-
-        <input type="text" id="cover_photo_link" name="cover_photo_link" placeholder="Cover photo link" class="form-control" value="<%= @restaurant.cover_photo_link %>">
       </div>
 
       <button class="btn btn-success">

@@ -1,6 +1,6 @@
-ActiveAdmin.register Restaurant do
+ActiveAdmin.register RestarantTag do
 
- permit_params :name, :description, :address, :no_views, :neighborhood, :average_rating, :website
+ permit_params :restaurant_id, :tag_id
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

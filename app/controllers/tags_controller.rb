@@ -6,6 +6,7 @@ class TagsController < ApplicationController
   end
 
   def show
+    @restarant_tag = RestarantTag.new
     @tag = Tag.find(params[:id])
 
     render("tags/show.html.erb")
@@ -20,7 +21,6 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new
 
-    @tag.restaurant_id = params[:restaurant_id]
     @tag.name = params[:name]
 
     save_status = @tag.save
@@ -41,7 +41,6 @@ class TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
 
-    @tag.restaurant_id = params[:restaurant_id]
     @tag.name = params[:name]
 
     save_status = @tag.save

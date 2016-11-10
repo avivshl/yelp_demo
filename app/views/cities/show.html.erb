@@ -96,7 +96,7 @@
       <% @city.restaurants.each do |restaurant| %>
         <li class="list-group-item">
           <a href="/restaurants/<%= restaurant.id %>">
-            <%= restaurant.city %>
+            <%= restaurant.created_at %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/restaurants/<%= restaurant.id %>" class="btn btn-primary">
