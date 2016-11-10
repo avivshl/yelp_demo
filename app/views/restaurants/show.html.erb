@@ -12,7 +12,13 @@
       <dd><%= @restaurant.name %></dd>
 
       <dt>Neighborhood</dt>
-      <dd><%= @restaurant.neighborhood %></dd>
+      <dd>
+        <% if @restaurant.neighborhood.present? %>
+          <a href="/neighborhoods/<%= @restaurant.neighborhood %>">
+            <%= @restaurant.neighborhood.city %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Average rating</dt>
       <dd><%= @restaurant.average_rating %></dd>
